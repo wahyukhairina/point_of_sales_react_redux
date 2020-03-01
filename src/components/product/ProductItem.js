@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../redux/actions/product'
-import { Card } from 'react-bootstrap'
+import DeleteProduct from '../modals/DeleteProduct'
 
 class ProductItem extends Component {
+  state = {
+    show : false,
+    
+  }
+
   getProducts () {
     this.props.dispatch(getProducts())
   }
@@ -11,6 +16,18 @@ class ProductItem extends Component {
   componentDidMount () {
     this.getProducts()
   }
+
+  onShow = (e) => {
+    this.setState({
+        show: true
+    })
+} 
+
+  onHandleClose = () => {
+    this.setState({
+        show: false
+    })
+} 
 
   render () {
     const { products } = this.props
@@ -31,7 +48,8 @@ class ProductItem extends Component {
                     <span className='fa fa-pencil-square-o fa-2x' style={{ color: 'black' }} />
                   </div>
                   <div className='col-md-4'>
-                    <span className='fa fa-trash-o fa-2x' data-toggle='modal' style={{ cursor: 'pointer' }} d />
+                    <a className='fa fa-trash-o fa-2x' onClick={()=>(this.onShow())} data-toggle='modal' style={{ cursor: 'pointer' }}></a> 
+                    <DeleteProduct show={this.state.show} onHandleClose={this.onHandleClose} id={products.id} />
                   </div>
                 </div>
               </div>

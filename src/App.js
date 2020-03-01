@@ -4,12 +4,11 @@ import { Provider } from 'react-redux';
 import store from './components/redux/store';
 import Home from './components/home/Home';
 
-
-function App() {
+function App () {
   return (
     <Provider store={store}>
       <Router>
-        <Route exact path="/" component = {Home} />
+        <Route exact path = "/" component = {Home} />
       </Router>
     </Provider>
   );

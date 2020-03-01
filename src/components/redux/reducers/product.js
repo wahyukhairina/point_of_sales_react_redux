@@ -17,6 +17,33 @@ const product = (state = intialState, action) => {
         ...state,
         products: action.payload.data.result
       }
+    case 'POST_PRODUCTS_PENDING':
+      return {
+        ...state
+      }
+    case 'POST_PRODUCTS_REJECTED' :
+      return {
+        ...state
+      }
+    case 'POST_PRODUCTS_FULFILLED':
+      state.products.unshift(action.payload.data.result)
+      return {
+        ...state,
+        products: action.payload.data.result
+      }
+    case 'DELETE_PRODUCTS_PENDING':
+      return {
+        ...state
+      }
+    case 'DELETE_PRODUCTS_REJECTED' :
+      return {
+        ...state
+      }
+    case 'DELETE_PRODUCTS_FULFILLED':
+      return {
+        ...state,
+        products: action.payload.data.result
+      }
     default:
       return state
   }

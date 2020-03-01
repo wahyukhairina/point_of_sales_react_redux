@@ -1,0 +1,104 @@
+import React, { Component } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
+
+import { connect } from 'react-redux';
+import { postProduct } from '../redux/actions/product';
+
+class AddProduct extends Component{
+ constructor(props) {
+     super(props)
+    this.state = {
+        product_name: '',
+        desc: '',
+        photo: '',
+        price: '',
+        category: '',
+        stock: '',
+        data_added: '',
+        data_updated: ''
+    }
+ }
+    
+
+    onChangeValue = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    onChangePhoto = (event) => {
+        this.setState({
+            photo : event.target.files[0]
+        })
+    }
+
+    postProduct () {
+        this.props.dispatch(postProduct())
+      }
+
+    onSubmit = (event) => {
+        event.preventDefault();
+    
+        const data = new FormData()
+        data.append( "product_name",this.state.product_name);
+        data.append("desc", this.state.desc);
+        data.append("photo",this.state.photo);
+        data.append("price",this.state.price);
+        data.append("category",this.state.category);
+        data.append("stock",this.state.stock);
+        data.append("data_added", new Date());
+        data.append("data_updated", new Date());
+      
+        postProduct(data);
+        this.props.onHandleClose();
+    }
+    render(){
+        return(
+            <Modal show={this.props.show} onHide={this.props.onHandleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Add Product</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={this.onSubmit}>
+                        <Form.Group>
+                            <Form.Label>Product Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter product name" name="product_name" onChange={this.onChangeValue} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Description" name="desc" onChange={this.onChangeValue} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Image</Form.Label>
+                            <Form.Control type="file" placeholder="Upload Image" name="photo" onChange={this.onChangePhoto} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Price" name="price" onChange={this.onChangeValue} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Category</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Category" name="category" onChange={this.onChangeValue} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Stock</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Stock" name="stock" onChange={this.onChangeValue} />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                </Modal.Body>
+            </Modal>
+        )
+    }
+}
+
+
+const mapStateToProps = state => {
+    return{
+      products: state.products
+    }
+  }
+
+export default connect(mapStateToProps)(AddProduct) 
