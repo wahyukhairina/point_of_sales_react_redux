@@ -8,7 +8,7 @@ class AddProduct extends Component{
  constructor(props) {
      super(props)
     this.state = {
-        product_name: '',
+        name: '',
         desc: '',
         photo: '',
         price: '',
@@ -32,24 +32,24 @@ class AddProduct extends Component{
         })
     }
 
-    postProduct () {
-        this.props.dispatch(postProduct())
-      }
+    // postProduct () {
+    //     this.props.dispatch(postProduct())
+    //   }
 
     onSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
     
         const data = new FormData()
-        data.append( "product_name",this.state.product_name);
+        data.append( "name",this.state.name);
         data.append("desc", this.state.desc);
-        data.append("photo",this.state.photo);
+        data.append("image",this.state.photo);
         data.append("price",this.state.price);
         data.append("category",this.state.category);
         data.append("stock",this.state.stock);
         data.append("data_added", new Date());
         data.append("data_updated", new Date());
       
-        postProduct(data);
+       this.props.dispatch(postProduct(data));
         this.props.onHandleClose();
     }
     render(){
@@ -62,7 +62,7 @@ class AddProduct extends Component{
                     <Form onSubmit={this.onSubmit}>
                         <Form.Group>
                             <Form.Label>Product Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter product name" name="product_name" onChange={this.onChangeValue} />
+                            <Form.Control type="text" placeholder="Enter product name" name="name" onChange={this.onChangeValue} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Description</Form.Label>

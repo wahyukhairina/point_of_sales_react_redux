@@ -2,10 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../redux/actions/product'
 import DeleteProduct from '../modals/DeleteProduct'
+import EditProduct from '../modals/EditProduct'
+
 
 class ProductItem extends Component {
   state = {
     show : false,
+    update : false,
+   data: null,
+   edited: null
     
   }
 
@@ -17,8 +22,10 @@ class ProductItem extends Component {
     this.getProducts()
   }
 
-  onShow = (e) => {
+  onShowDelete = (products) => {
+    
     this.setState({
+       data: products,
         show: true
     })
 } 
@@ -27,6 +34,20 @@ class ProductItem extends Component {
     this.setState({
         show: false
     })
+} 
+
+onShowUpdate = (products) => {
+    
+  this.setState({
+     edited: products,
+      update: true
+  })
+} 
+
+onUpdateClose = () => {
+  this.setState({
+      update: false
+  })
 } 
 
   render () {
@@ -44,19 +65,23 @@ class ProductItem extends Component {
                   <div className='col-md-4'>
                     <span className='fa fa-shopping-cart fa-2x' style={{ cursor: 'pointer' }} />
                   </div>
-                  <div className='col-md-4'>
-                    <span className='fa fa-pencil-square-o fa-2x' style={{ color: 'black' }} />
+                  <div className='col-md-4'> 
+                    <span className='fa fa-pencil-square-o fa-2x' onClick={()=>(this.onShowUpdate(products))} style={{ color: 'black', cursor: 'pointer'  }} />
+                  
                   </div>
                   <div className='col-md-4'>
-                    <a className='fa fa-trash-o fa-2x' onClick={()=>(this.onShow())} data-toggle='modal' style={{ cursor: 'pointer' }}></a> 
-                    <DeleteProduct show={this.state.show} onHandleClose={this.onHandleClose} id={products.id} />
+                    <a className='fa fa-trash-o fa-2x' onClick={()=>(this.onShowDelete(products))} data-toggle='modal' style={{ cursor: 'pointer' }}></a> 
+                  
                   </div>
                 </div>
               </div>
             </div>
           </div>
         )}
+          <DeleteProduct show={this.state.show} onHandleClose={this.onHandleClose} data={this.state.data} />
+          <EditProduct show={this.state.update} onHide={this.onUpdateClose} data={this.state.edited} />
       </>
+      
 
     )
   }

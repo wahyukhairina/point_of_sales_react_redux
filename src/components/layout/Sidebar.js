@@ -21,11 +21,17 @@ class Sidebar extends Component {
   render () {
     return (
       <ul className='nav flex-column'>
-        <a onClick={this.onShow} style={{ marginTop: '10px', marginLeft: '15px', color: 'grey' }} className='fa fa-plus fa-2x' href='#' />
+        <a onClick={this.onShow} title="Add Product" style={{ marginTop: '10px', marginLeft: '15px', color: 'grey' }} className='fa fa-plus fa-2x' href='#' />
         <li className='nav-item'>
-          <a className='fa fa-list-alt fa-2x' style={{ marginTop: '20px', marginLeft: '12px', color: 'grey' }} href='#' />
+          <a className='fa fa-list-alt fa-2x' title="Category" style={{ marginTop: '20px', marginLeft: '12px', color: 'grey' }} href='#' />
         </li>
         <AddProduct show={this.state.show} onHandleClose={this.onHandleClose} />
+        <li className='nav-item'>
+          <a className='fa fa-user fa-2x' title="User" style={{ marginTop: '20px', marginLeft: '12px', color: 'grey' }} href='#' />
+        </li>
+        <li className='nav-item'>
+          <a className='fa fa-file-text fa-2x' title="History" style={{ marginTop: '20px', marginLeft: '12px', color: 'grey' }} href='#' />
+        </li>
       </ul>
     )
   }

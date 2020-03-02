@@ -23,3 +23,28 @@ export const deleteProduct = (id) => {
     payload: axios.delete(`http://localhost:8006/product/${id}`)
   }
 }
+
+export const updateProduct = (productId, data) => {
+  return {
+    type: 'UPDATE_PRODUCTS',
+    payload: axios({
+      method: 'PATCH',
+      url: `http://localhost:8006/product/${productId}`,
+      data: data
+    })
+   }
+}
+
+export const searchProduct = (name) => {
+  return {
+    type: 'SEARCH_PRODUCTS',
+    payload: axios.get(`http://localhost:8006/product/searchName${name}`)
+  }
+}
+
+export const getProductsDetail = (id) => {
+  return {
+    type: 'GET_DETAIL',
+    payload: axios.get(`http://localhost:8006/${id}`)
+  }
+}
