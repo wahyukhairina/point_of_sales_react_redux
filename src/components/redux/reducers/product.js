@@ -39,7 +39,7 @@ const product = (state = intialState, action) => {
         ...state
       }
     case 'POST_PRODUCTS_FULFILLED':
-      console.log(action.payload.data)
+      // console.log(action.payload.data)
       const newDataProduct = [...state.products, action.payload.data.result]
       return {
         ...state,

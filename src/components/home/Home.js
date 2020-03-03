@@ -4,9 +4,9 @@ import { Container } from 'react-bootstrap'
 
 const Home = () => {
   return (
-    <Container>
+    <>
       <Product />
-    </Container>
+    </>
 
   )
 }

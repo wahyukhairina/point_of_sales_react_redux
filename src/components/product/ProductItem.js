@@ -14,6 +14,10 @@ class ProductItem extends Component {
     
   }
 
+  onAddChart = (e) => {
+    this.props.setCart (e)
+  }
+
   getProducts () {
     this.props.dispatch(getProducts())
   }
@@ -50,6 +54,8 @@ onUpdateClose = () => {
   })
 } 
 
+
+
   render () {
     const { products } = this.props
     return (
@@ -63,7 +69,7 @@ onUpdateClose = () => {
                 <h5 className='card-title'>Rp.{products.price}</h5>
                 <div className='row'>
                   <div className='col-md-4'>
-                    <span className='fa fa-shopping-cart fa-2x' style={{ cursor: 'pointer' }} />
+                    <span className='fa fa-shopping-cart fa-2x' onClick={()=>(this.onAddChart(products))} style={{ cursor: 'pointer' }} />
                   </div>
                   <div className='col-md-4'> 
                     <span className='fa fa-pencil-square-o fa-2x' onClick={()=>(this.onShowUpdate(products))} style={{ color: 'black', cursor: 'pointer'  }} />

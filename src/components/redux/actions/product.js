@@ -32,7 +32,7 @@ export const updateProduct = (productId, data) => {
       url: `http://localhost:8006/product/${productId}`,
       data: data
     })
-   }
+  }
 }
 
 export const searchProduct = (name) => {
