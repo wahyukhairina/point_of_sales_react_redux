@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../redux/actions/product'
+import { addCart } from '../redux/actions/cart'
 import DeleteProduct from '../modals/DeleteProduct'
 import EditProduct from '../modals/EditProduct'
 
@@ -14,8 +15,9 @@ class ProductItem extends Component {
     
   }
 
-  onAddChart = (e) => {
-    this.props.setCart (e)
+  onAddChart = (product) => {
+    product.qty = 1 
+    this.props.dispatch(addCart(product))
   }
 
   getProducts () {

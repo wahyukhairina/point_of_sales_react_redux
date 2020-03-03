@@ -1,8 +1,8 @@
-const intialState = {
+const initialState = {
   user: []
 }
 
-const user = (state = intialState, action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_USER_PENDING':
       return {

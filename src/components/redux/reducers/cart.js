@@ -1,16 +1,18 @@
-const intialState = {
+const initialState = {
   cart: []
 }
 
-const cart = (state = intialState, action) => {
+const cart = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_CART_FULFILLED':
-      console.log(action.payload)
-      const newCart = [...state.cart, action.payload.data]
+    case 'ADD_CART':
+    //   console.log(action.payload)
+      const newCart = [...state.cart, action.payload]
       return {
         ...state,
         cart: newCart
       }
+    default:
+      return state
   }
 }
 

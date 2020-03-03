@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import CartItem from './CartItem'
+import { connect } from 'react-redux'
 
 class Cart extends Component {
   constructor (props) {
@@ -10,16 +11,8 @@ class Cart extends Component {
     }
   }
 
-  componentWillReceiveProps ({ cart }) {
-    this.state.cart.push(cart)
-
-    this.setState({
-      cart: this.state.cart
-    })
-  }
-
   render () {
-    const { cart } = this.state
+    const { cart } = this.props
     const ItemCart = cart.map((cart) => {
       return (
         <CartItem cart={cart} key={cart.id} />
@@ -36,4 +29,10 @@ class Cart extends Component {
   }
 }
 
-export default Cart
+const mapStateToProps = (state) => {
+
+  return {
+    cart: state.cart.cart
+  }
+}
+export default connect(mapStateToProps)(Cart)

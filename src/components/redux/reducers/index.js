@@ -5,7 +5,6 @@ import cart from './cart'
 
 export default combineReducers({
   products,
-  user
-  // ,
-  // cart
+  user,
+  cart
 })

@@ -1,8 +1,8 @@
-const intialState = {
+const initialState = {
   products: []
 }
 
-const product = (state = intialState, action) => {
+const product = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_PRODUCTS_PENDING':
       return {

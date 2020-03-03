@@ -25,11 +25,6 @@ class Product extends Component {
     })
 } 
 
-onSetCart = (products) => {
-  this.setState({
-    cart : products
-  })
-}
   render () {
     const { cart } = this.state
     return (
@@ -43,7 +38,7 @@ onSetCart = (products) => {
               </div>
               <div className='col-md-11'>
                 <div className='row'>
-                  <ProductItem setCart = {this.onSetCart} />
+                  <ProductItem  />
                 </div>
               </div>
             </div>
