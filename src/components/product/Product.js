@@ -3,7 +3,7 @@ import ProductItem from './ProductItem'
 import Navbar from '../layout/Navbar'
 import Sidebar from '../layout/Sidebar'
 import AddProduct from '../modals/AddProduct'
-import Cart from './Cart'
+import CartItem from './CartItem'
 
 
 class Product extends Component {
@@ -45,7 +45,7 @@ class Product extends Component {
           </div>
           <div className='col-md-3'>
     ini cart
-    <Cart cart = { cart } />
+    <CartItem />
           </div>
         </div>
         <div className='row'>
