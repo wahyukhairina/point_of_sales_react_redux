@@ -5,6 +5,10 @@ import Navbar from '../layout/Navbar'
 import Sidebar from '../layout/Sidebar'
 
 class ListCategory extends Component {
+    state = {
+        add: false
+    }
+
   getCategory () {
     this.props.dispatch(getCategory())
   }
@@ -13,6 +17,17 @@ class ListCategory extends Component {
     this.getCategory()
   }
 
+  showAdd (){
+      this.setState ({
+          add: true
+      })
+  }
+
+  closeAdd (){
+    this.setState ({
+        add: false
+    })
+}
   render () {
     const { category } = this.props
     return (
@@ -26,8 +41,10 @@ class ListCategory extends Component {
           <div className='col-md-1'>
             <Sidebar />
           </div>
+                          
           <div className='col-md-11'>
-
+          <a className='fa fa-plus fa-2x' onClick={this.showAdd} title='Add User' style={{ marginLeft: '1200px', marginTop: '15px', color: 'grey' }} href='#' />
+         
             <table class='table'>
               <thead>
                 <tr>

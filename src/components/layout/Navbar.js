@@ -7,11 +7,9 @@ const Navbar = () => {
         backgroundColor: '#DB7093	'
       }}
     >
-      <center> <h2 style={{ textAlign: 'center' }} /></center>
+     <h1>Check-Out</h1>
 
-      <form className='form-inline'>
-        <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' />
-      </form>
+     
     </nav>
   )
 }

@@ -92,6 +92,19 @@ const product = (state = initialState, action) => {
         ...state,
         products: action.payload.data.result
       }
+    case 'SORT_PRODUCTS_PENDING' :
+      return {
+        ...state
+      }
+    case 'SORT_PRODUCTS_REJECTED' :
+      return {
+        ...state
+      }
+    case 'SORT_PRODUCTS_FULFILLED' :
+      return {
+        ...state,
+        products: action.payload.data.result
+      }
     default:
       return state
   }

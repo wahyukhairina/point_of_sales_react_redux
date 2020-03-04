@@ -9,3 +9,10 @@ export const getCategory = () => {
     })
   }
 }
+
+export const postCategory = (data) => {
+  return {
+    type: 'POST_CATEGORY',
+    payload: axios.post('http://localhost:8006/category', data)
+  }
+}

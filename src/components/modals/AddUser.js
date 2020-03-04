@@ -11,7 +11,9 @@ class AddUser extends Component{
         name: '',
         username: '',
         password: '',
-        status: ''
+        status: '',
+        data_added: new Date(),
+        data_updated: new Date()
     }
  }
     

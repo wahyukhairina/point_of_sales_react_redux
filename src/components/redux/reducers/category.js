@@ -17,6 +17,20 @@ const category = (state = initialState, action) => {
         ...state,
         category: action.payload.data
       }
+    case 'POST_CATEGORY_PENDING':
+      return {
+        ...state
+      }
+    case 'POST_CATEGORY_REJECTED':
+      return {
+        ...state
+      }
+    case 'POST_CATEGORY_FULFILLED':
+      const newDataCategory = [...state.category, action.payload.data.result]
+      return {
+        ...state,
+        category: newDataCategory
+      }
     default:
       return state
   }

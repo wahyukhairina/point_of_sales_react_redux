@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../redux/actions/product'
+
 import { addCart } from '../redux/actions/cart'
 import DeleteProduct from '../modals/DeleteProduct'
 import EditProduct from '../modals/EditProduct'
@@ -11,7 +12,8 @@ class ProductItem extends Component {
     show : false,
     update : false,
    data: null,
-   edited: null
+   edited: null,
+   searchName: ''
     
   }
 
@@ -59,11 +61,13 @@ onUpdateClose = () => {
 
 
 
+
   render () {
     const { products } = this.props
 
     return (
       <>
+      
         {products.map((products) =>
           <div className='col-md-4' key={products.id}>
             <div className='card' style={{ marginTop: '10px' }} id='card_posts'>
@@ -88,6 +92,7 @@ onUpdateClose = () => {
             </div>
           </div>
         )}
+        
           <DeleteProduct show={this.state.show} onHandleClose={this.onHandleClose} data={this.state.data} />
           <EditProduct show={this.state.update} onHide={this.onUpdateClose} data={this.state.edited} />
       </>

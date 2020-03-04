@@ -38,13 +38,13 @@ export const updateProduct = (productId, data) => {
 export const searchProduct = (name) => {
   return {
     type: 'SEARCH_PRODUCTS',
-    payload: axios.get(`http://localhost:8006/product/searchName${name}`)
+    payload: axios.get(`http://localhost:8006/product/?searchName=${name}`)
   }
 }
 
-export const getProductsDetail = (id) => {
+export const sortProduct = (type) => {
   return {
-    type: 'GET_DETAIL',
-    payload: axios.get(`http://localhost:8006/${id}`)
+    type: 'SORT_PRODUCTS',
+    payload: axios.get(`http://localhost:8006/product/?sort=price&type=${type}`)
   }
 }
