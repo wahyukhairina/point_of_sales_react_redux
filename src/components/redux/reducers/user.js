@@ -31,6 +31,7 @@ const user = (state = initialState, action) => {
         user : action.payload.data.result
       }
     case 'POST_USER_PENDING':
+      console.log(action.payload)
       return {
         ...state
       }
@@ -39,7 +40,7 @@ const user = (state = initialState, action) => {
         ...state
       }
     case 'POST_USER_FULFILLED':
-      console.log(action.payload.data)
+     
       const newDataUser = [...state.user, action.payload.data.result]
       return {
         ...state,

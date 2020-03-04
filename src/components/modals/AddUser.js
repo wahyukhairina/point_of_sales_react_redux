@@ -4,7 +4,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { postUser } from '../redux/actions/user';
 
-class AddProduct extends Component{
+class AddUser extends Component{
  constructor(props) {
      super(props)
     this.state = {
@@ -25,18 +25,12 @@ class AddProduct extends Component{
 
     onSubmit = (event) => {
         event.preventDefault()
-    
-        const data = new FormData()
-        data.append( "name",this.state.name);
-        data.append("username", this.state.username);
-        data.append("password",this.state.status);
-      
-       this.props.dispatch(postUser(data));
-        this.props.onHandleClose();
+       this.props.dispatch(postUser(this.state));
+        this.props.onHide();
     }
     render(){
         return(
-            <Modal show={this.props.show} onHide={this.props.onHandleClose}>
+            <Modal show={this.props.show} onHide={this.props.onHide}>
                 <Modal.Header closeButton>
                 <Modal.Title>Add User</Modal.Title>
                 </Modal.Header>
@@ -52,7 +46,7 @@ class AddProduct extends Component{
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="file" placeholder="Enter Password" name="password" onChange={this.onChangeValue} />
+                            <Form.Control type="password" placeholder="Enter Password" name="password" onChange={this.onChangeValue} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Status</Form.Label>
@@ -68,11 +62,4 @@ class AddProduct extends Component{
     }
 }
 
-
-const mapStateToProps = state => {
-    return{
-      products: state.products
-    }
-  }
-
-export default connect(mapStateToProps)(AddProduct) 
+export default connect()(AddUser) 

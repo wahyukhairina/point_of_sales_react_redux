@@ -9,7 +9,7 @@ const Navbar = () => {
       }}
     >
       <h4>User List</h4>
-      <a className='fa fa-plus fa-2x' title='Add User' style={{ color: 'grey' }} href='#' />
+      
     </nav>
   )
 }

@@ -5,7 +5,7 @@ const initialState = {
 const cart = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_CART':
-      const newCart = [...state.cart, action.payload]
+        const newCart = [...state.cart, action.payload] 
       return {
         ...state,
         cart: newCart
@@ -18,6 +18,7 @@ const cart = (state = initialState, action) => {
         }
         return cart
       })
+    
       return {
         ...state,
         cart: newQtyCart
@@ -30,6 +31,7 @@ const cart = (state = initialState, action) => {
           }
           return cart
         })
+
         return {
           ...state,
           cart: newQty

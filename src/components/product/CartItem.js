@@ -19,9 +19,10 @@ class CartItem extends Component {
      console.log('will receive props')
  }
 
- reduceQuantity = (id) => {
-   
+ reduceQuantity = (id, qty) => {
+   if ( qty > 1) {
     this.props.dispatch(reduceQty(id))
+    }
  }
  
 
@@ -38,7 +39,7 @@ class CartItem extends Component {
           <div className='col-md-4'>
             <div className='row' style={{ marginLeft: '-15px' }}>{cart.name}</div>
             <div className='row' style={{ marginLeft: '-30px' }}>
-              <div className='col-md-3'><button onClick={()=>(this.reduceQuantity(cart.id))}>-  </button></div>
+              <div className='col-md-3'><button onClick={()=>(this.reduceQuantity(cart.id, cart.qty))}>-  </button></div>
               <div className='col-md-3' style={{ marginLeft: '10px' }}> {cart.qty} </div>
               <div className='col-md-3'><button onClick={()=>(this.addQuantity(cart.id))}>+</button></div>
 

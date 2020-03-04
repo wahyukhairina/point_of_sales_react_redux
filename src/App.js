@@ -5,7 +5,7 @@ import store from './components/redux/store'
 import Home from './components/home/Home'
 import User from './components/user/User'
 import Product from './components/product/Product'
-// import Category from './components/category/Category'
+import Category from './components/category/ListCategory'
 
 function App () {
   return (
@@ -14,7 +14,7 @@ function App () {
         <Route exact path = '/' component = {Home} />
         <Route path='/user' component={User} />
         <Route path='/product' component={Product} />
-        {/* <Route path='/category' component={Category} /> */}
+        <Route path='/category' component={Category} />
       </Router>
     </Provider>
   )

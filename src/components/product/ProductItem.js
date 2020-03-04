@@ -16,7 +16,7 @@ class ProductItem extends Component {
   }
 
   onAddChart = (product) => {
-
+    
     product.qty = 1 
     this.props.dispatch(addCart(product))
   }
@@ -61,7 +61,7 @@ onUpdateClose = () => {
 
   render () {
     const { products } = this.props
-    const { cart } = this.props
+
     return (
       <>
         {products.map((products) =>

@@ -7,32 +7,31 @@ class Cart extends Component {
     super(props)
 
     this.state = {
-      cart: []
+    //   cart: []
     }
   }
 
   render () {
-    const { cart } = this.props
-    const ItemCart = cart.map((cart) => {
-      return (
-        <CartItem cart={cart} key={cart.id} />
-      )
-    })
+    // const { cart } = this.props
+    // const ItemCart = cart.map((cart) => {
+    //   return (
+    //     <CartItem cart={cart} key={cart.id} />
+    //   )
+    // })
 
     return (
-      <>
-        <div className='container'>
-          {ItemCart}
-        </div>
+      <>        
+          <CartItem />
+
       </>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (state) => {
 
-  return {
-    cart: state.cart.cart
-  }
-}
-export default connect(mapStateToProps)(Cart)
+//   return {
+//     cart: state.cart.cart
+//   }
+// }
+export default connect()(Cart)
