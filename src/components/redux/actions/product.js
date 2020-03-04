@@ -1,11 +1,16 @@
 import axios from 'axios'
 
 export const getProducts = () => {
+  console.log(localStorage.getItem('token'))
   return {
     type: 'GET_PRODUCTS',
     payload: axios({
       method: 'GET',
-      url: 'http://localhost:8006/product'
+      url: 'http://localhost:8006/product',
+      headers: {
+        authorization: localStorage.getItem('token'),
+        'user-id': localStorage.getItem('user-id')
+      }
     })
   }
 }
@@ -38,13 +43,38 @@ export const updateProduct = (productId, data) => {
 export const searchProduct = (name) => {
   return {
     type: 'SEARCH_PRODUCTS',
-    payload: axios.get(`http://localhost:8006/product/?searchName=${name}`)
+    payload: axios.get(`http://localhost:8006/product/?searchName=${name}`, {
+      headers: {
+        authorization: localStorage.getItem('token'),
+        'user-id': localStorage.getItem('user-id')
+      }
+    })
+    
   }
 }
 
 export const sortProduct = (type) => {
   return {
     type: 'SORT_PRODUCTS',
-    payload: axios.get(`http://localhost:8006/product/?sort=price&type=${type}`)
+    payload: axios.get(`http://localhost:8006/product/?sort=price&type=${type}`, {
+      headers: {
+        authorization: localStorage.getItem('token'),
+        'user-id': localStorage.getItem('user-id')
+    }
+    }) 
+}
+}
+
+export const paginationProduct = (page) => {
+  return {
+    type: 'PAGINATION',
+    payload: axios ({
+      method: 'GET',
+      url: `http://localhost:8006/product/?page=${page}`,
+      headers: {
+        authorization: localStorage.getItem('token'),
+        'user-id': localStorage.getItem('user-id')
+      }
+    })
   }
 }

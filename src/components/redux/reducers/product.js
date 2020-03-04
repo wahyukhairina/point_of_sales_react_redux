@@ -1,5 +1,6 @@
 const initialState = {
-  products: []
+  products: [],
+  pagination: []
 }
 
 const product = (state = initialState, action) => {
@@ -15,7 +16,8 @@ const product = (state = initialState, action) => {
     case 'GET_PRODUCTS_FULFILLED':
       return {
         ...state,
-        products: action.payload.data.result
+        products: action.payload.data.result,
+        pagination: action.payload.data.totalpages
       }
     case 'GET_DETAIL_PENDING':
       return {
@@ -54,10 +56,13 @@ const product = (state = initialState, action) => {
         ...state
       }
     case 'DELETE_PRODUCTS_FULFILLED':
-      const newProductAfterDelete = state.products.filter(products => products.id !== action.payload.data.id)
+      
+      const newProductAfterDelete = state.products.filter(products => products.id === action.payload.data.result)
+     
+      console.log(action.payload.data)
       return {
         ...state,
-        isLoading: false,
+        // isLoading: false,
         products: newProductAfterDelete
       }
     case 'UPDATE_PRODUCTS_PENDING':
@@ -101,6 +106,11 @@ const product = (state = initialState, action) => {
         ...state
       }
     case 'SORT_PRODUCTS_FULFILLED' :
+      return {
+        ...state,
+        products: action.payload.data.result
+      }
+    case 'PAGINATION_FULFILLED':
       return {
         ...state,
         products: action.payload.data.result

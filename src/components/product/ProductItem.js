@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getProducts } from '../redux/actions/product'
+import { getProducts, paginationProduct } from '../redux/actions/product'
 
 import { addCart } from '../redux/actions/cart'
 import DeleteProduct from '../modals/DeleteProduct'
@@ -59,11 +59,16 @@ onUpdateClose = () => {
   })
 } 
 
+paginateProduct = (event) => {
+  this.props.dispatch(paginationProduct(event.target.id))
+}
+
 
 
 
   render () {
-    const { products } = this.props
+    
+    const { products, pagination } = this.props
 
     return (
       <>
@@ -92,8 +97,14 @@ onUpdateClose = () => {
             </div>
           </div>
         )}
-        
-          <DeleteProduct show={this.state.show} onHandleClose={this.onHandleClose} data={this.state.data} />
+        <ul className="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            {pagination.map((pagination) => (
+                                <li class="page-item" key={pagination}><a class="page-link" onClick={this.paginateProduct} id={pagination}>{pagination}</a></li>
+                            ))}
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+          <DeleteProduct show={this.state.show} onHide={this.onHandleClose} data={this.state.data} />
           <EditProduct show={this.state.update} onHide={this.onUpdateClose} data={this.state.edited} />
       </>
       
@@ -105,7 +116,8 @@ onUpdateClose = () => {
 const mapStateToProps = (state) => {
   return {
     products: state.products.products,
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    pagination: state.products.pagination
   }
 }
 
