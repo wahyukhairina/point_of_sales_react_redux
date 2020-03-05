@@ -41,7 +41,7 @@ const user = (state = initialState, action) => {
       }
     case 'POST_USER_FULFILLED':
      
-      const newDataUser = [...state.user, action.payload.data.result]
+      const newDataUser = [...state.user, action.payload.data]
       return {
         ...state,
         user: newDataUser
@@ -55,10 +55,11 @@ const user = (state = initialState, action) => {
         ...state
       }
     case 'DELETE_USER_FULFILLED':
-      const newUserAfterDelete = state.user.filter(user => user.id !== action.payload.data.id)
+      const newUserAfterDelete = state.user.filter(user => user.id != action.payload.data)
+      console.log(action.payload)
       return {
         ...state,
-        isLoading: false,
+        // isLoading: false,
         user: newUserAfterDelete
       }
     case 'UPDATE_USER_PENDING':

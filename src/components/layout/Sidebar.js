@@ -5,7 +5,7 @@ class Sidebar extends Component {
   render () {
     return (
       <ul className='nav flex-column'>
-        <Link className='fa fa-book fa-2x' title='Menu' style={{ marginTop: '20px', marginLeft: '20px', color: 'grey' }} to='/product' />
+        <Link className='fa fa-book fa-2x' title='Menu' style={{ marginTop: '20px', marginLeft: '20px', color: 'grey' }} to='/' />
         <li className='nav-item'>
           <Link className='fa fa-list-alt fa-2x' title='Category' style={{ marginTop: '20px', marginLeft: '20px', color: 'grey' }} to='/category' />
         </li>

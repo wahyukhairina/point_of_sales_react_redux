@@ -4,12 +4,11 @@ const Navbar = () => {
   return (
     <nav
       className='navbar navbar-light' style={{
-        backgroundColor: '#DB7093	'
+        backgroundColor: '#DB7093	', fontFamily: 'Ubuntu'
       }}
     >
-     <h1>Check-Out</h1>
+     <h1> <a style={{fontFamily: 'Ubuntu', color:'white' }}>total-in</a></h1>
 
-     
     </nav>
   )
 }

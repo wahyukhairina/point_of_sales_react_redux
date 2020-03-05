@@ -4,13 +4,12 @@ import { deleteProduct } from '../redux/actions/product'
 import { connect } from 'react-redux'
 
 const DeleteProduct = (props) => {
-  const { show, onHide, data, dispatch } = props
+  const { show, onHide, products, dispatch } = props
 
-  const onDelete = async (data) => {
-
-
-    await dispatch(deleteProduct(data))
-
+  const onDelete = async (e) => {
+    e.preventDefault()
+    await dispatch(deleteProduct(products.id))
+    
     onHide()
 }
 
@@ -24,7 +23,7 @@ const DeleteProduct = (props) => {
         <img style={{ marginLeft: '100px' }} />
         <ul style={{ textAlign: 'center' }} />
       </Modal.Body>
-      <Button variant='primary' onClick={() => (onDelete(data.id))}> Delete </Button>
+      <Button variant='primary' onClick={onDelete}> Delete </Button>
     </Modal>
   )
 }

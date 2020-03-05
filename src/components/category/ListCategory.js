@@ -44,8 +44,9 @@ class ListCategory extends Component {
                           
           <div className='col-md-11'>
           <a className='fa fa-plus fa-2x' onClick={this.showAdd} title='Add User' style={{ marginLeft: '1200px', marginTop: '15px', color: 'grey' }} href='#' />
-         
-            <table class='table'>
+         <div className='row'>
+           <div className='col-md-11'>
+            <table className='table'>
               <thead>
                 <tr>
                   <th scope='col'>CODE</th>
@@ -68,6 +69,8 @@ class ListCategory extends Component {
                 )}
               </tbody>
             </table>
+            </div>
+         </div>
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Product from '../product/Product'
+// import Product from '../product/Product'
+import Product from '../aproduct/Product'
 import { Link } from 'react-router-dom';
 
 class Home extends Component {
@@ -23,8 +24,19 @@ class Home extends Component {
     console.log('render')
     return (
       <>
-      <Link to="#" onClick={this.onLogout.bind(this)}>Logout</Link>
-      <Product />
+        <div className='row'>
+           </div>
+        <div className='row'>
+          <div className='col-md-6'>
+          <Link to="#" style={{color:'grey', marginLeft:'10px', marginTop:'10px'}} onClick={this.onLogout.bind(this)}>Logout</Link>
+       
+          </div>
+          <div className='col-md-4'>
+          <p> Hi, {localStorage.getItem('status')} </p>
+       
+          </div>
+        </div>
+         <Product />
       </>
     )
   }

@@ -50,11 +50,12 @@ class AddProduct extends Component{
         data.append("data_updated", new Date());
       
        this.props.dispatch(postProduct(data));
-        this.props.onHandleClose();
+        this.props.onHide();
     }
     render(){
+        console.log(this.props)
         return(
-            <Modal show={this.props.show} onHide={this.props.onHandleClose}>
+            <Modal show={this.props.show} onHide={this.props.onHide}>
                 <Modal.Header closeButton>
                 <Modal.Title>Add Product</Modal.Title>
                 </Modal.Header>
@@ -74,12 +75,15 @@ class AddProduct extends Component{
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Price</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Price" name="price" onChange={this.onChangeValue} />
+                            <Form.Control type="text" placeholder="Enter Price" name="price"  onChange={this.onChangeValue} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Category</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Category" name="category" onChange={this.onChangeValue} />
-                        </Form.Group>
+                        <Form.Label>Category</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Category" defaultValue={"DEFAULT"} name="category" onChange={this.onChangeValue} as="select">
+                                <option value="DEFAULT" disabled>Choose..</option>
+                                <option value="1">Drink</option>
+                                <option value="2">Food</option>
+                            </Form.Control></Form.Group>
                         <Form.Group>
                             <Form.Label>Stock</Form.Label>
                             <Form.Control type="text" placeholder="Enter Stock" name="stock" onChange={this.onChangeValue} />

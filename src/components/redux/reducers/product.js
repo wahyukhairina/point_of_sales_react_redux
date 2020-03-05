@@ -7,15 +7,18 @@ const product = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_PRODUCTS_PENDING':
       return {
-        ...state
+        ...state,
+        isLoading: true
       }
     case 'GET_PRODUCTS_REJECTED' :
       return {
-        ...state
+        ...state,
+        isLoading: true
       }
     case 'GET_PRODUCTS_FULFILLED':
       return {
         ...state,
+        isLoading: false,
         products: action.payload.data.result,
         pagination: action.payload.data.totalpages
       }
@@ -56,32 +59,39 @@ const product = (state = initialState, action) => {
         ...state
       }
     case 'DELETE_PRODUCTS_FULFILLED':
-      
-      const newProductAfterDelete = state.products.filter(products => products.id === action.payload.data.result)
-     
-      console.log(action.payload.data)
+      console.log(action.payload)
+      const newProductAfterDelete = state.products.filter(products => products.id !== action.payload.data.result)
       return {
         ...state,
-        // isLoading: false,
+        isLoading: false,
         products: newProductAfterDelete
+       
+       
+
+        // isLoading: false,
+       
       }
     case 'UPDATE_PRODUCTS_PENDING':
       return {
-        ...state
+        ...state,
+        isLoading: true
       }
     case 'UPDATE_PRODUCTS_REJECTED' :
       return {
-        ...state
+        ...state, 
+        isLoading: true
       }
     case 'UPDATE_PRODUCTS_FULFILLED':
+      console.log(action.payload)
       const newProductUpdate = state.products.map(products => {
-        if (products.id === action.payload.data.id) {
-          return action.payload.data
+        if (products.id === action.payload.data.result.productId) {
+          return action.payload.data.result
         }
         return products
       })
       return {
         ...state,
+        isLoading: false,
         products: newProductUpdate
       }
     case 'SEARCH_PRODUCTS_PENDING':

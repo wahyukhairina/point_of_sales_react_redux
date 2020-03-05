@@ -31,12 +31,17 @@ const cart = (state = initialState, action) => {
           }
           return cart
         })
-
         return {
           ...state,
           cart: newQty
         }
 
+      case 'REMOVE_ITEM':
+        const newRemove = state.cart.filter(cart => cart.id !== action.payload)
+        return{
+          ...state,
+          cart : newRemove
+        }
     default:
       return state
   }

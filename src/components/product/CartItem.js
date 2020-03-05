@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addQty, reduceQty } from '../redux/actions/cart'
+import { addQty, reduceQty, removeItem } from '../redux/actions/cart'
 
 class CartItem extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-        cart: []
-    }
-  }
+  
 
  addQuantity = (id) => {
    
@@ -25,13 +20,18 @@ class CartItem extends Component {
     }
  }
  
+ removeItem = (id) => {
+   this.props.dispatch(removeItem(id))
+ }
 
   render () {
     const { cart } = this.props
     return (
       <>
+     
+
       {cart.map((cart) =>
-        <div className='row'>
+        <div className='row' style={{border:'4px solid #efefef', marginTop:'10px'}} key={cart.id}>
           <div className='col-md-4'>
             <div><img style={{ height: '80px', width: '80px', marginLeft: '-14px' }} src={cart.image} /></div>
 
@@ -46,10 +46,12 @@ class CartItem extends Component {
             </div>
           </div>
           <div className='col-md-4'>
-            {cart.price}
+          
+      <button style={{backgroundColor: '#DB7093', marginTop:'23px'}} onClick={()=>(this.removeItem(cart.id))}> Remove</button>
           </div>
         </div>
       )}
+   
       </>
     )
   }

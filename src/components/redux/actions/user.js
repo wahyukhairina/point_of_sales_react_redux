@@ -13,7 +13,7 @@ export const getUser = () => {
 export const postUser = (data) => {
   return {
     type: 'POST_USER',
-    payload: axios.post('http://localhost:8006/user', data)
+    payload: axios.post('http://localhost:8006/user/register', data)
   }
 }
 

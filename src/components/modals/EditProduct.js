@@ -16,19 +16,19 @@ class UpdateProduct extends Component{
     }
  
     
-   componentWillReceiveProps({data}){
-       this.onSetValue(data)
-       console.log(this.props)
+   componentWillReceiveProps({products}){
+       this.onSetValue(products)
+    //    console.log(products)
    }
 
-   onSetValue = (product) => {
+   onSetValue = (products) => {
        this.setState({
-           name : product.name,
-           desc : product.desc,
-           image : product.image,
-           price : product.price,
-           category : product.category,
-           stock : product.stock
+           name : products.name,
+           desc : products.description,
+           image : products.image,
+           price : products.price,
+           category : products.category,
+           stock : products.stock
        }
      
        )
@@ -61,13 +61,14 @@ class UpdateProduct extends Component{
         data.append("data_updated", new Date());
 
 
-        const id = this.props.data.id;
+        const id = this.props.products.id;
         this.props.dispatch(updateProduct (id, data))
         this.props.onHide()
         }
 
     render(){
-        const { show, onHide } = this.props
+        // console.log(this.state.image)
+        const { show, onHide, products } = this.props
         return(
             <Modal show={show} onHide={onHide}>
                 <Modal.Header closeButton>
@@ -84,17 +85,21 @@ class UpdateProduct extends Component{
                             <Form.Control type="text" placeholder="Enter Description" value={this.state.desc} name="desc" onChange={this.onChangeValue} />
                         </Form.Group>
                         <Form.Group>
+                            {/* <input type="checkbox" class="form-check-input" id="exampleCheck1"></input> */}
                             <Form.Label>Image</Form.Label>
-                            <Form.Control type="file" placeholder="Upload Image" name="image" onChange={this.onChangeImage} />
+                            <Form.Control type="file" placeholder="Upload Image"   name="image" onChange={this.onChangeImage} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Price</Form.Label>
                             <Form.Control type="text" placeholder="Enter Price" name="price" value={this.state.price} onChange={this.onChangeValue} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Category</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Category" name="category" value={this.state.category} onChange={this.onChangeValue} />
-                        </Form.Group>
+                        <Form.Label>Category</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Category" defaultValue={"DEFAULT"} value={this.state.category} name="category" onChange={this.onChangeValue} as="select">
+                                <option value="DEFAULT" disabled>Choose..</option>
+                                <option value="1">Drink</option>
+                                <option value="2">Food</option>
+                            </Form.Control></Form.Group>
                         <Form.Group>
                             <Form.Label>Stock</Form.Label>
                             <Form.Control type="text" placeholder="Enter Stock" name="stock" value={this.state.stock} onChange={this.onChangeValue} />

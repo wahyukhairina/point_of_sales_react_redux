@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getUser } from '../redux/actions/user'
 import ListUser from './ListUser'
-import NavbarUser from '../layout/NavbarUser'
+import Navbar from '../layout/Navbar'
 import Sidebar from '../layout/Sidebar'
 import AddUser from '../modals/AddUser'
 import DeleteUser from '../modals/DeleteUser'
@@ -59,18 +59,27 @@ onSelectDelete = (id) => {
         const listUser = user.user.map((user) =>  <ListUser user = {user} key={user.user_id} onSelectDelete={this.onSelectDelete}/> )
         return (
            <>
-                <div className="row">
+                
                     <div className='col-md-12'>
-                    <NavbarUser />
+                    <Navbar />
                     </div>
-                </div>
+               
                 <div className="row">
                     <div className='col-md-1'>
                         <Sidebar />
                     </div>
                     <div className='col-md-11'>
-                    <a className='fa fa-plus fa-2x' onClick={this.addShow} title='Add User' style={{ marginLeft: '1200px', marginTop: '15px', color: 'grey' }} href='#' />
-                            <Table style={{marginTop: '20px'}} striped bordered hover size="sm">
+                        <div className='row'>
+                        <div className='col-md-4'>
+                            <h2 style={{color:'#848484', marginTop:'10px'}}>List User</h2>
+                        </div>
+                        <div className='col-md-6'>
+                        <a className='fa fa-plus fa-2x' onClick={this.addShow} title='Add User' style={{ marginLeft: '750px', marginTop: '15px', color: 'grey' }} href='#' />
+                        </div>
+                        </div>
+                        <div className='row'>
+                            <div className='col-md-11'>
+                       <table className='table' style={{marginTop: '20px'}} striped bordered hover size="sm">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -86,7 +95,9 @@ onSelectDelete = (id) => {
                             <tbody>
                                 {listUser}
                             </tbody>
-                        </Table>
+                        </table>
+                        </div>
+                        </div>
                     </div>
                 </div>
                 <AddUser show={this.state.show} onHide={this.addClose} />
