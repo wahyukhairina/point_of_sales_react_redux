@@ -9,6 +9,10 @@ class Home extends Component {
     if (!localStorage.getItem('isAuth')) {
       this.props.history.push('/login')
     }
+    // if (localStorage.getItem('status') !== 'admin') {
+    //   this.onLogout()
+     
+    // }
   }
 
   onLogout () {
@@ -27,8 +31,8 @@ class Home extends Component {
         <div className='row'>
            </div>
         <div className='row'>
-          <div className='col-md-6'>
-          <Link to="#" style={{color:'grey', marginLeft:'10px', marginTop:'10px'}} onClick={this.onLogout.bind(this)}>Logout</Link>
+          <div className='col-md-7'>
+          <Link to="#" style={{color:'grey', marginLeft:'10px', marginTop:'20px'}} onClick={this.onLogout.bind(this)}>Logout</Link>
        
           </div>
           <div className='col-md-4'>

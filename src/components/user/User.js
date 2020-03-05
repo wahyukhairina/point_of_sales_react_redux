@@ -10,6 +10,8 @@ import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 
 
 class User extends Component {
+   
+
     state = {
         show : false,
         showDelete: false,
@@ -21,6 +23,10 @@ onGetUser = async() => {
 }
 
 componentDidMount(){
+    if (localStorage.getItem('status') !== 'admin') {
+        alert ('Sorry dear, you are not Admin :)')
+        this.props.history.push('/')
+      }
     this.onGetUser()
 }
 

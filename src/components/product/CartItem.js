@@ -5,9 +5,13 @@ import { addQty, reduceQty, removeItem } from '../redux/actions/cart'
 class CartItem extends Component {
   
 
- addQuantity = (id) => {
-   
-    this.props.dispatch(addQty(id))
+ addQuantity = (cart) => {
+   if(cart.stock > cart.qty){
+    this.props.dispatch(addQty(cart.id))
+  }
+  else(
+    alert('Stock unsufficient!')
+  )
  }
 
  componentWillReceiveProps (){
@@ -41,7 +45,7 @@ class CartItem extends Component {
             <div className='row' style={{ marginLeft: '-30px' }}>
               <div className='col-md-3'><button onClick={()=>(this.reduceQuantity(cart.id, cart.qty))}>-  </button></div>
               <div className='col-md-3' style={{ marginLeft: '10px' }}> {cart.qty} </div>
-              <div className='col-md-3'><button onClick={()=>(this.addQuantity(cart.id))}>+</button></div>
+              <div className='col-md-3'><button onClick={()=>(this.addQuantity(cart))}>+</button></div>
 
             </div>
           </div>

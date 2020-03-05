@@ -14,6 +14,10 @@ class ListCategory extends Component {
   }
 
   componentDidMount () {
+    if (localStorage.getItem('status') !== 'admin') {
+      alert ('Sorry dear, you are not Admin :)')
+      this.props.history.push('/')
+    }
     this.getCategory()
   }
 
